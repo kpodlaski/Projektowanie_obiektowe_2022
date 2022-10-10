@@ -1,0 +1,42 @@
+@startuml
+
+actor Bank 
+actor Klient
+actor Pracownik
+actor Właściciel
+actor Dostawca
+Właściciel --|> Pracownik
+
+usecase (Autoryzacja płatności)
+usecase (Wybór towaru)
+usecase (Płatność)
+usecase (Płatność kasa samoobsługowa)
+usecase (Płatność mobilna w app)
+usecase (Płatność kartą przy kasie)
+usecase (Płatność gotówką przy kasie)
+usecase (Wykładanie towaru)
+usecase (Dostawy i zamówienia) 
+
+(Płatność kasa samoobsługowa) --|> (Płatność)
+(Płatność mobilna w app) --|> (Płatność)
+(Płatność kartą przy kasie) --|> (Płatność)
+(Płatność gotówką przy kasie) --|> (Płatność)
+(Wybór towaru) --> (Płatność) :<<invoke>>
+(Płatność kartą przy kasie) --> (Autoryzacja płatności) : <<include>>
+(Płatność gotówką przy kasie) --> (Autoryzacja płatności) : <<include>>
+(Płatność kasa samoobsługowa) --> (Autoryzacja płatności) : <<include>>
+
+
+
+Bank -- (Autoryzacja płatności)
+Klient -- (Wybór towaru)
+Klient -- (Płatność)
+
+Pracownik -- (Płatność kartą przy kasie)
+Pracownik -- (Płatność gotówką przy kasie)
+Pracownik -- (Wykładanie towaru)
+Pracownik -- (Dostawy i zamówienia)
+Właściciel -- (Dostawy i zamówienia)
+Dostawca -- (Dostawy i zamówienia)
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+
+actor Kierownik
+actor Pracownik
+actor Klient
+actor Dostawca
+actor Bank 
+
+usecase (Ustalanie cen i rabatów)
+usecase (Rozkładanie towaru)
+usecase (Szybki zakup mobilny)
+usecase (Zakup przy kasie)
+usecase (Płatność)
+usecase (Płatność kartą)
+usecase (Płatność gotówką)
+usecase (Płatność mobilna)
+usecase (Dostawa towaru)
+
+Kierownik -- (Ustalanie cen i rabatów)
+Pracownik -- (Rozkładanie towaru)
+Pracownik -- (Zakup przy kasie)
+Pracownik -- (Dostawa towaru)
+Klient -- (Zakup przy kasie)
+Klient -- (Szybki zakup mobilny)
+Klient -- (Płatność)
+(Zakup przy kasie) --> (Płatność) : <<include>>
+(Szybki zakup mobilny) --> (Płatność) : <<include>>
+Dostawca -- (Dostawa towaru)
+Bank -- (Płatność kartą)
+
+(Płatność kartą) --|> (Płatność)
+(Płatność gotówką) --|> (Płatność)
+(Płatność mobilna) --|> (Płatność)
+Kierownik --|> Pracownik
+
+@enduml

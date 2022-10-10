@@ -1,0 +1,42 @@
+@startuml
+actor Klient
+actor Pracownik
+actor Właściciel
+actor Bank 
+actor Dostawca 
+
+
+usecase (Wybór produktów)
+usecase (Płatność)
+usecase (Płatność mobilna)
+usecase (Płatność przy kasie)
+usecase (Płatność samoobsługa)
+usecase (Płatność kartą)
+usecase (Płatność gotówką)
+usecase (Autoryzacja)
+usecase (Rozkładanie towaru)
+usecase (Dostawy)
+usecase (Zamówienia)
+
+Właściciel --|> Pracownik
+Dostawca -- (Dostawy)
+Pracownik -- (Dostawy)
+Pracownik -- (Rozkładanie towaru)
+Pracownik -- (Płatność przy kasie)
+Klient -- (Płatność)
+Klient -- (Wybór produktów)
+Bank -- (Autoryzacja)
+Dostawca -- (Zamówienia)
+Właściciel -- (Zamówienia)
+
+(Płatność kartą) --> (Autoryzacja) : <<include>>
+(Płatność przy kasie) --> (Płatność kartą) : <<include>>
+(Płatność przy kasie) --> (Płatność gotówką) : <<include>>
+(Płatność samoobsługa) --> (Płatność kartą) : <<incude>>
+(Płatność kartą) --|> (Płatność)
+(Płatność gotówką) --|> (Płatność)
+(Płatność przy kasie) --|> (Płatność)
+(Płatność samoobsługa) --|> (Płatność)
+(Płatność mobilna) --|> (Płatność)
+(Wybór produktów) --> (Płatność)
+@enduml

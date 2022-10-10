@@ -1,0 +1,33 @@
+@startuml
+
+'elementy class można zastąpic przez object
+
+class Pracownik
+class Właściciel
+class Klient
+class Dostawca
+
+'sklep jest rozumiany jako magazyn, 
+'lub pomieszczenie z produktami (na półkach)
+class Sklep
+
+class Koszyk
+class Bank 
+class "System płatności"
+class Produkt
+class Kategoria
+class "Baza danych"
+
+Właściciel --|> Pracownik
+Pracownik o-- Dostawca
+Klient -- Koszyk
+Sklep o-- Produkt
+Sklep o-- Kategoria
+Produkt "kategorie" o-- "produkty" Kategoria
+Pracownik -- Sklep
+"System płatności"  -- Klient
+"System płatności" -- Bank
+Koszyk o-- Produkt
+Sklep -- "Baza danych"
+
+@enduml
