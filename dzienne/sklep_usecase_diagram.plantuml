@@ -15,6 +15,7 @@ usecase (Płatność kartą)
 usecase (Płatność gotówką)
 usecase (Płatność mobilna)
 usecase (Dostawa towaru)
+usecase (Wyszukiwanie produktów)
 
 Kierownik -- (Ustalanie cen i rabatów)
 Pracownik -- (Rozkładanie towaru)
@@ -23,6 +24,9 @@ Pracownik -- (Dostawa towaru)
 Klient -- (Zakup przy kasie)
 Klient -- (Szybki zakup mobilny)
 Klient -- (Płatność)
+Klient -- (Wyszukiwanie produktów)
+Pracownik -- (Wyszukiwanie produktów)
+
 (Zakup przy kasie) --> (Płatność) : <<include>>
 (Szybki zakup mobilny) --> (Płatność) : <<include>>
 Dostawca -- (Dostawa towaru)

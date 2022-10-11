@@ -1,0 +1,48 @@
+@startuml
+
+class Klient
+class Pracownik
+' {
+'     imie:String
+'     nazwisko: String
+'     nrTelefon
+'     wyslijSMS(tresc:string)
+' }
+class Kierownik
+class Dostawca
+class Bank 
+class Produkt{
+    ' kategoria:Kategoria
+    cena : float
+}
+class Kategoria
+class Magazyn{
+    listaProduktów(kategoria:Kategoria):Produkt[]
+    weźProdukt(produkt:Produkt):Produkt
+    ' zmiejsza stan produktów w maazynie
+    odłóżProdukt(produkt:Produkt):Produkt
+}
+class "System płatności"{
+    zapłać(koszyk:Koszyk):bool
+}
+class Koszyk{
+    dodajProdukt(produkt:Produkt)
+    weźProdukt(produkt:Produkt)
+}
+
+Kierownik --|> Pracownik
+
+Kategoria -left--o "kategorie" Produkt
+Kategoria -down-o "podkategoria" Kategoria
+
+Produkt --o Magazyn
+Klient -- Magazyn
+Pracownik -- Magazyn
+Dostawca -- Pracownik
+Koszyk o-- Produkt
+Klient -- Koszyk
+Klient -- "System płatności"
+"System płatności" -- Bank
+"System płatności" -- Pracownik
+
+@enduml
