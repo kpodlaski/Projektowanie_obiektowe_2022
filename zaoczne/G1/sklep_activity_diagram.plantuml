@@ -1,0 +1,32 @@
+@startuml
+
+(*) --> "Wejscie klienta do sklepu"
+if "klient zakończył zakupy"  as if1 then 
+    --> [TAK] "Rozpoczęcie płatności"
+    --> if "wybrany typ płatności" then
+        --> [Karta] "Wykładam towar" as w1
+        --> "Płatność kartą"
+        --> === B1 ===
+        --> "Autoryzacja w banku" 
+        --> === B2 ===
+        === B1 === --> "Aktualizacja stanów" 
+        --> === B2 ===
+        === B1 === --> "Wydruk paragonów" 
+        --> === B2 ===
+        --> (*)
+        else 
+        --> [Gotówka] "Wykładam towar" as w2 
+        --> "Płatność gotówką"
+        -->(*)
+        else 
+        --> [Kasa samoobsługowa] "Skanowanie towaru"
+        --> "Płatność kartą"
+    endif        
+else 
+    --> [NIE] "wybór towaru z półki"
+    --> "dodanie towaru do koszyka"
+    --> if1
+endif
+
+
+@enduml

@@ -9,12 +9,20 @@ class Dostawca
 
 'sklep jest rozumiany jako magazyn, 
 'lub pomieszczenie z produktami (na półkach)
-class Sklep
+class Sklep{
+    'dodanie do stanu magazynowego
+    dodajProdukt(produkt:Produkt):bool
+    'zdjęcie ze stanu magazynu
+    wezProdukt(nazwa:String):Produkt
+}
 
 class Koszyk
 class Bank 
 class "System płatności"
-class Produkt
+class Produkt{
+    ' cena:float
+    ' dodajKategorie():void
+}
 class Kategoria
 class "Baza danych"
 
