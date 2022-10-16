@@ -1,10 +1,10 @@
 @startuml
 
 (*) --> "Wejscie klienta do sklepu"
-if "klient zakończył zakupy"  as if1 then 
+if "Klient zakończył zakupy"  as if1 then 
     --> [TAK] "Rozpoczęcie płatności"
-    --> if "wybrany typ płatności" then
-        --> [Karta] "Wykładam towar" as w1
+    --> if "Wybrany typ płatności" then
+        --> [Karta] "Wykładnie towar" as w1
         --> "Płatność kartą"
         --> === B1 ===
         --> "Autoryzacja w banku" 
@@ -15,7 +15,7 @@ if "klient zakończył zakupy"  as if1 then
         --> === B2 ===
         --> (*)
         else 
-        --> [Gotówka] "Wykładam towar" as w2 
+        --> [Gotówka] "Wykładie towar" as w2 
         --> "Płatność gotówką"
         -->(*)
         else 
@@ -23,8 +23,8 @@ if "klient zakończył zakupy"  as if1 then
         --> "Płatność kartą"
     endif        
 else 
-    --> [NIE] "wybór towaru z półki"
-    --> "dodanie towaru do koszyka"
+    --> [NIE] "Wybór towaru z półki"
+    --> "Dodanie towaru do koszyka"
     --> if1
 endif
 
