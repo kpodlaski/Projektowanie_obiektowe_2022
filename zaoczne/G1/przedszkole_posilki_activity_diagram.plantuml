@@ -1,0 +1,42 @@
+@startuml
+
+'Wyżywienie w przedszkolu
+(*) --> "Przygotowanie tygodniowego menu"
+--> "Sprawdzenie balansu żywienia"
+--> "Sprawdzenie stanów magazynowych"
+--> "Przygotowanie listy zakupowej"
+partition Dzień {
+    --> "Sprawdzenie jakości produktów w magazynie"
+    --> if "czy są zaplanowane zakupy?" then
+            --> [Tak] "zakup towaru" 
+            --> "Aktualizacja stanów magazynowych" as akt       
+        
+    partition Posiłek {
+        akt --> if "Czy wszystkie posiłki wydano?" as if_dzien_trwa then 
+            --> [Nie] "Przygotowanie Posiłku"
+        else
+            -left-> [Tak] (*)
+        endif
+        else
+            --> [Nie] if_dzien_trwa
+        endif
+    "Przygotowanie Posiłku" --> "Przygotowanie próbek dla Sanepidu"
+    if "Czy wszystkie grupy dostały posiłek?" as if_wydawanie then 
+        --> [NIE] "Wydanie posiłku nowej grupie" 
+        --> if_wydawanie
+    else 
+        --> [Tak] "Oczekiwanie na sygnał zakńćzenia posiłku"
+        if "czy wszystkie naczynia odebrano?" as if_odbior then
+            --> [NIE] "Odbieranie naczyń z następnej grupy"
+            --> if_odbior
+        else 
+            --> [TAK] "Zmywanie naczyń"
+        endif
+    endif
+    "Zmywanie naczyń" --> "Sprzątanie kuchni"
+    --> if_dzien_trwa
+    }
+}
+
+
+@enduml
