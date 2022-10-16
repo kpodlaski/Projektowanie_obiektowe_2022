@@ -1,5 +1,7 @@
 @startuml
 
+'skinparam linetype ortho
+
 class Klient
 class Pracownik{
     imie: String
@@ -42,5 +44,7 @@ Klient --o Magazyn
 Magazyn -- Pracownik
 Klient -- Koszyk
 Koszyk o-- Produkt
+
+
 
 @enduml

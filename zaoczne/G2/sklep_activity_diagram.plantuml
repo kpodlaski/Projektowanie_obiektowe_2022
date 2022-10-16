@@ -1,0 +1,45 @@
+@startuml
+
+(*) --> "Wejście klienta do sklepu"
+if "Czy klient chce coś jeszcze kupić?" as if1 then 
+    --> [Tak] "Wyszukanie produktu"
+    --> "Włóż produkt do koszyka"
+    --> if1
+else
+    --> [Nie] "Płatność za towary"
+endif
+if "Czy wszystkie produkty zeskanowano?" as if2 then
+    --> [Nie] "Skanuj następny produkt z koszyka"
+    --> "Sprawdź wagę"
+    --> "Aktualizuj listę zakupów"
+    --> if2
+else
+    --> [Tak] "Płatność"
+endif
+if "Jaka forma płatności" then
+    --> [Karta] "Platność Karta" 
+    --> "Wydruk Paragonu"
+else
+    --> [Blik] "Płatność blikiem"
+    --> "Wydruk Paragonu"
+else 
+    --> [Gorówka] "Płatność gotówką"
+    --> "Wydruk Paragonu"
+endif
+    "Wydruk Paragonu" --> "Wyjście ze sklepu"
+
+    ' Rozdzielanie procesów
+    ' --> === B1 === 
+    ' --> "zapakowanie towaru"
+    ' --> === B2 ===
+
+    ' === B1 === --> "przygotowanie faktury"
+    ' --> === B2 ===
+
+    ' === B1 === --> "zamówienie kuriera"
+    ' --> === B2 ===
+    ' --> "Wysyłka"
+
+--> (*)
+
+@enduml
