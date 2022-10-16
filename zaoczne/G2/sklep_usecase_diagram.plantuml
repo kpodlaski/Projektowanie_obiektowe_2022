@@ -18,7 +18,7 @@ usecase (Rozkładanie towaru)
 usecase (Dostawy)
 usecase (Zamówienia)
 
-Właściciel --|> Pracownik
+Właściciel -|> Pracownik
 Dostawca -- (Dostawy)
 Pracownik -- (Dostawy)
 Pracownik -- (Rozkładanie towaru)

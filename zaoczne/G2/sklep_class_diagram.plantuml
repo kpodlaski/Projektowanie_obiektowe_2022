@@ -1,0 +1,46 @@
+@startuml
+
+class Klient
+class Pracownik{
+    imie: String
+    nazwisko: String
+}
+class Właściciel
+class Bank {
+    autoryzacjaPłatności(..):bool
+}
+class Dostawca 
+class Produkt{
+    cena: float
+}
+class Magazyn{
+    'produkty: Produkt[]
+    dodajProdukt(produkt:Produkt)
+    wezProdukt(produkt: Produkt)
+    wyszukaj(nazwa:String):Produkt[]
+    wyszukaj(kategoria:Kategoria):Produkt[]
+}
+class Kategoria
+class "System Płatności"
+class Koszyk{
+    dodajProdukt(produkt:Produkt)
+    wezProdukt(produkt: Produkt)
+}
+
+Pracownik <|-- Właściciel
+
+'to samo co produkty: Produkt[] 
+'zapisane jako pole klasy Magazyn
+Produkt --o "produkty" Magazyn
+Produkt "kategoria" -up- Kategoria
+Kategoria --o "podkategoria" Kategoria
+Pracownik o-- Dostawca
+Klient --o Magazyn
+"System Płatności" -- Klient
+"System Płatności" -- Bank
+"System Płatności" -- Pracownik
+Magazyn -- Pracownik
+Klient -- Koszyk
+Koszyk o-- Produkt
+
+@enduml
