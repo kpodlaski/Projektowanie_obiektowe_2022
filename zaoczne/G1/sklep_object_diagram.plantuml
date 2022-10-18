@@ -1,5 +1,5 @@
 @startuml
-
+allowmixing 
 'elementy class można zastąpic przez object
 
 class Pracownik
