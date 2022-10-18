@@ -1,0 +1,40 @@
+@startuml
+
+(*) --> "Klient wchodzi do sklepu"
+--> if "Czy zakończono wybieranie towarów?" as if1 then 
+        --> [Nie] "Klient pobiera następny towar z półki"
+        --> "Klient wkłada towar do koszyka"
+        --> if1
+    else
+        --> [Tak] "Kient podchodzi do kasy"
+        
+endif 
+if "Są towary w koszyku?" as if2 then 
+    --> [Tak] "Wyjmij kolejny produkt"
+    --> "Zeskanuj produkt"
+    --> "Odłóż na półkę"
+    --> if2
+else 
+    --> [Nie] "Rozpoczęcie płatności"
+endif
+' Sprawdź wiej jeśli jest alkochol/papierosy
+if "Jaka forma płatności?" then 
+    --> [Karta] "Płątność kartą"
+    --> === B1 ===
+else 
+    --> [Gotówka] "Płatność gotówką"
+    --> === B1 ===
+else 
+    --> [Blik] "Płatność Blikiem"
+    --> === B1 ===
+endif
+=== B1 === --> "Wydruk paragonu" 
+--> === B2 ===
+=== B1 === --> "Naliczenie punktów" 
+--> === B2 ===
+=== B1 === --> "Aktualizacja stanów magazynowych" 
+--> === B2 ===
+--> "Klient pobiera produkty z półki"
+--> (*)
+
+@enduml
