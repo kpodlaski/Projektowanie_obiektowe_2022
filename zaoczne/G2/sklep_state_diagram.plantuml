@@ -1,0 +1,40 @@
+@startuml
+
+state "Pusty sklep" as st0
+state "Klient, pusty koszyk" as st1
+st1: Klient w sklepie
+st1: klient ma pusty koszyk
+state "Klient, Wybiera produkty" as st2
+st2: koszyk nie jest pusty
+state "Klient, Skanowanie przy kasie" as st3
+st3: przenoszenie produktów z koszyka na szalkę
+st3: sumowanie cen i sprawdzanie wagi
+st3: produkty w koszyku
+
+state "Klent, Koniec skanowania" as st4
+st4: zeskanowano wszystkie produkty
+st4: wybrano formę płątności
+st4: koszyk jest pusty
+
+state "Autoryzacja płatności" as st5
+
+state "Klient wychodzi ze sklepu" as st6
+
+st0 -down-> st1 : "nowy klient wchodzi"
+st1 --> st0 : "klient wychodzi"
+st1 --> st2 : "wkłamy produkt do koszyka" 
+st2 --> st2 : "odkładamy/dokładamy produkt"
+st2 --> st1 : "odłożono ostatni produkt"
+
+st2 -right-> st3 : "klient podchodzi do kasy"
+
+st3 -up-> st4 : "Klent wybiera opcję płać"
+
+st4 -up-> st5 : "Wysłanie prośby o autoryzację"
+st5 -left-> st6 : "Autoryzacja powidła się"
+st5 --> st4 : "Autoryzacja nie powiodła się"
+st6 -left-> st0
+
+[*] --> st0 : "Otwarcie sklepu"
+st0 --> [*] : "Zamknięcie sklepu"
+@enduml
