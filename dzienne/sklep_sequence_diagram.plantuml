@@ -1,0 +1,25 @@
+@startuml
+
+actor Aktor_Klient
+
+activate Klient
+loop for each kategory
+    
+    Klient -> Magazyn : listaProduktów("Kategoria")
+    activate Magazyn
+    return listaProduktow
+    Klient -> Aktor_Klient : wybierzMleko(listaProduktow)
+    return "produktXXX"
+    Klient -> Magazyn : wezProdukt("produktXXX")
+    database DB
+    activate Magazyn
+    Magazyn -> DB : aktualizuj_stany_magazynowe
+    activate DB
+    return
+    return produkt
+    Klient -> Koszyk : dodajProdukt(produkt)
+    return
+end
+deactivate Klient
+
+@enduml

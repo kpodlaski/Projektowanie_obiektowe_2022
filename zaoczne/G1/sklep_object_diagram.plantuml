@@ -14,6 +14,8 @@ class Sklep{
     dodajProdukt(produkt:Produkt):bool
     'zdjęcie ze stanu magazynu
     wezProdukt(nazwa:String):Produkt
+    'znajdź produkt dla Kateorii
+    produktyDlaKategorii(kategoria): Produkt[]
 }
 
 class Koszyk
@@ -29,6 +31,7 @@ class "Baza danych"
 Właściciel --|> Pracownik
 Pracownik o-- Dostawca
 Klient -- Koszyk
+Klient -- Sklep
 Sklep o-- Produkt
 Sklep o-- Kategoria
 Produkt "kategorie" o-- "produkty" Kategoria
