@@ -1,22 +1,23 @@
 @startuml
+
+'człowiek używający aplikacji
 actor Użytkownik 
-participant Klient
-participant Koszyk
-Użytkownik -> Klient : szukaj("mleko")
+
+'ignorujemy UI
+Użytkownik -> Klient : listaProduktów("mleko")
 activate Klient
-    Klient -> Sklep : produktyDlaKategorii('mleko')
-    activate Sklep
-return lista_produktow
-Klient -> Użytkownik : pokaz(lista_produktów)
-deactivate
-Użytkownik -> Klient : weź(produkt)
+Klient -> Sklep : produktyDlaKategorii("mleko")
+activate Sklep
+return lista_produktów
+return wyświetl lista_produktów
+Użytkownik -> Klient : wybrany produkt "mlekoABC"
 activate Klient
-    Klient -> Sklep : wezProdukt(produkt)
-    activate Sklep
-    return produkt
+Klient -> Sklep : wezProdukt("mlekoABC")
+activate Sklep
+return produkt
 Klient -> Koszyk : dodajProdukt(produkt)
 activate Koszyk
-return
-Klient -> Użytkownik: "co dalej?"
-deactivate 
+return 
+Klient --> Użytkownik : "czy to koniec zakupów"
+deactivate
 @enduml
