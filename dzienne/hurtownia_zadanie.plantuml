@@ -1,0 +1,18 @@
+' Hutrownia:
+'     - stanny magazynowe 
+'     - zamówienia (produkt zamówiony/zablokowany ale jeszcze w magazynie)
+'     - fakturowanie
+'     - kategorie klientów ( zniżki dla klienta)
+'     - rabaty produktowe (zniżki dla produktów lub grup produktów)
+
+' Dodajemy elementy związane z fakturowaniem zamówienia,
+' Nie bierzemy pod uwagę samego procesu tworzenia zamówienia
+' diagramy aktywności, sekwencji, obiektów
+@startuml 
+object client
+object order 
+object product
+object db 
+client -- order 
+client o-- product
+@enduml
